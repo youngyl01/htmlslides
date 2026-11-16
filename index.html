@@ -125,6 +125,18 @@ dialog::backdrop{background:#16160fc0}
 .exam-figure figcaption{font-size:15px;line-height:1.4;color:var(--muted)}
 .exam-figure figcaption strong{display:block;font-size:17px;color:var(--ink)}
 .detail-source a{text-underline-offset:3px}
+.risk-values .risk-value{display:grid;gap:4px;text-align:left;padding:10px 13px;background:white;border:1px solid var(--line);border-radius:12px;min-width:0}
+.risk-value .risk-label{font-size:clamp(16px,1.35vw,22px);font-weight:800}
+.risk-value .risk-rate{font-size:clamp(30px,4vw,57px);font-weight:800;line-height:1}
+.risk-value .risk-action{font-weight:700;font-size:clamp(14px,1.25vw,17px);color:#684f00}
+.risk-value:hover{border-color:#b19220}
+.risk-table{width:100%;border-spacing:0;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:clamp(15px,1.8vw,19px)}
+.risk-table :is(th,td){padding:8px clamp(8px,1.6vw,15px);text-align:left;line-height:1.35}
+.risk-table thead{background:var(--pale)}
+.risk-table tbody tr+tr > *{border-top:1px solid var(--line)}
+.risk-table tbody th{font-weight:600}
+.risk-table :is(th,td):not(:first-child){text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.risk-table td:last-child{font-weight:800}
 .detail-chart{height:clamp(190px,32svh,247px)}
 .detail-chart[hidden],.chart-fallback[hidden]{display:none}
 .chart-fallback{margin:0;padding:0;display:grid;gap:8px}
@@ -230,6 +242,34 @@ dialog::backdrop{background:#16160fc0}
   <div class="chart-wrap detail-chart"><canvas id="pain-bars" role="img" aria-label="발 안쪽 아치 약 74%, 족근동 약 9%, 뒤꿈치 약 9%"></canvas></div>
   <dl id="pain-values" class="chart-fallback" hidden></dl>
   <p class="note detail-source">주요 세 부위 · <a href="https://pubmed.ncbi.nlm.nih.gov/36822970/" target="_blank" rel="noopener noreferrer">Böhm·Dussa · J Foot Ankle Surg 2023 · PMID 36822970</a></p>
+ </div>
+ <div id="detail-complications" class="detail-body" hidden>
+  <p class="detail-lead">합병증 7.1% 중 추가 수술 없이 치료한 사례입니다.</p>
+  <table class="risk-table" aria-label="추가 수술 없이 치료한 합병증">
+   <thead><tr><th scope="col">보고 항목</th><th scope="col">건수</th><th scope="col">비율</th></tr></thead>
+   <tbody>
+    <tr><th scope="row">주변 조직 자극·통증</th><td>42건</td><td>1.65%</td></tr>
+    <tr><th scope="row">발 정렬이 의도대로 교정되지 않음</th><td>27건</td><td>1.06%</td></tr>
+    <tr><th scope="row">발목 바깥쪽 힘줄이 뻣뻣해짐 (비골근 구축)</th><td>19건</td><td>0.75%</td></tr>
+    <tr><th scope="row">수술 상처 감염</th><td>10건</td><td>0.39%</td></tr>
+    <tr><th scope="row">넷째 발허리뼈 피로골절</th><td>3건</td><td>0.12%</td></tr>
+    <tr><th scope="row">나사 풀림</th><td>2건</td><td>0.08%</td></tr>
+   </tbody>
+  </table>
+  <p class="note">각 항목의 비율은 수술한 발 2,550쪽을 기준으로 계산했습니다. 여러 종류의 삽입물과 술식을 포함한 24개 연구의 자료입니다.</p>
+  <p class="note detail-source"><a href="https://doi.org/10.1302/2058-5241.6.200076" target="_blank" rel="noopener noreferrer">Smith 등 · EFORT Open Rev 2021</a></p>
+ </div>
+ <div id="detail-reoperations" class="detail-body" hidden>
+  <p class="detail-lead">추가 수술 3.1%에서 논문이 제시한 주요 이유 두 가지입니다.</p>
+  <table class="risk-table" aria-label="추가 수술의 주요 이유">
+   <thead><tr><th scope="col">보고 항목</th><th scope="col">건수</th><th scope="col">비율</th></tr></thead>
+   <tbody>
+    <tr><th scope="row">삽입물 파손·이동 또는 크기·위치 문제로 교체나 조정</th><td>48건</td><td>1.88%</td></tr>
+    <tr><th scope="row">통증으로 삽입물 교체 또는 제거</th><td>29건</td><td>1.14%</td></tr>
+   </tbody>
+  </table>
+  <p class="note">각 항목의 비율은 수술한 발 2,550쪽을 기준으로 계산했습니다. 논문에 나온 주요 이유만 표시해 합계는 전체 추가 수술률과 차이가 납니다.</p>
+  <p class="note detail-source"><a href="https://doi.org/10.1302/2058-5241.6.200076" target="_blank" rel="noopener noreferrer">Smith 등 · EFORT Open Rev 2021</a></p>
  </div>
 </dialog>
 <noscript>브라우저에서 자바스크립트를 켜면 슬라이드를 볼 수 있습니다.</noscript>
@@ -420,7 +460,7 @@ chart('연장술을 함께 하면 힘줄도 보호합니다', '아킬레스건 �
  ['깁스를 푼 뒤','보조기가 필요한지 확인하고 걷기, 종아리 힘, 발끝으로 밀어내는 힘을 회복합니다.']
 ], '약 6주는 문헌의 깁스 보호 예시입니다. 달리기와 점프는 힘줄 치유와 보행을 확인한 뒤 단계적으로 시작합니다.', jposna+' / '+clinic);
 chart('연구에서 보고된 합병증과 재수술', '소아 유연성 평발에 여러 종류의 관절 움직임 제한술을 적용한 연구들을 모아 분석했습니다.', 'risk', [
- ['합병증','7.1%'], ['추가 수술','3.1%']
+ ['합병증','7.1%','complications'], ['추가 수술','3.1%','reoperations']
 ], '24개 연구, 수술한 발 2,550쪽. 추가 수술은 합병증 중 일부이며, ProStop 단독이나 개인별 위험을 뜻하지 않습니다.', 'Smith 등 · EFORT Open Rev 2021');
 cards('어떤 증상이 생기면 연락할까요?', '통증이 줄고 걷기가 편해지는지도 영상만큼 중요합니다.', [
  ['발 바깥쪽 통증이 늘 때','삽입물 주변 자극, 위치 이동, 교정 정도를 진찰과 영상으로 확인합니다.'],
@@ -476,7 +516,9 @@ const lightbox = $('lightbox');
 const clinicalDetail = $('clinical-detail');
 const clinicalPanels = {
  flexibility:{title:'발 아치는 어떻게 다시 보이나요?',action:'교정 모습 보기'},
- pain:{title:'발의 어느 부위가 아픈가요?',action:'통증 그래프 보기'}
+ pain:{title:'발의 어느 부위가 아픈가요?',action:'통증 그래프 보기'},
+ complications:{title:'어떤 합병증이 있었나요?',action:'합병증 종류 보기'},
+ reoperations:{title:'왜 추가 수술을 했나요?',action:'추가 수술 이유 보기'}
 };
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
@@ -540,9 +582,15 @@ function drawSlide(slide,section) {
    </div><p id="check-result" class="callout" role="status" aria-live="polite"></p>`;
  case 'chart': {
   const numbers = ['age','risk'].includes(slide.key);
+  const values = slide.key==='risk'
+   ? `<div class="chart-values numbers risk-values">${slide.items.map(([label,text,detail]) =>
+     `<button class="risk-value float" type="button" data-detail="${detail}" aria-haspopup="dialog" aria-controls="clinical-detail">
+      <span class="risk-label">${html(label)}</span><span class="risk-rate">${html(text)}</span><span class="risk-action">${html(clinicalPanels[detail].action)} <span aria-hidden="true">↗</span></span>
+     </button>`).join('')}</div>`
+   : `<dl class="chart-values ${numbers?'numbers':''}">${slide.items.map(([label,text]) => `<div><dt>${html(label)}</dt><dd>${html(text)}</dd></div>`).join('')}</dl>`;
   return `${heading}<div class="split">
    <div class="chart-wrap ${numbers?'':'time'}"><canvas role="img" aria-label="${html(slide.title)} 그래프"></canvas></div>
-   <dl class="chart-values ${numbers?'numbers':''}">${slide.items.map(([label,text]) => `<div><dt>${html(label)}</dt><dd>${html(text)}</dd></div>`).join('')}</dl>
+   ${values}
    </div><p class="chart-caption">${html(slide.caption)}</p>`;
  }
  case 'refs':
@@ -572,6 +620,13 @@ function drawChart(key,canvas=stage.querySelector('canvas')) {
   options.scales={x:{min:0,max,ticks:{...ticks,callback:value=>value+'%'},grid:{color:'#ecebe4'}},y:{ticks,grid:{display:false}}};
   options.plugins.tooltip.callbacks={label:ctx=>ctx.parsed.x+'%'};
   config={type:'bar',data:{labels,datasets:[{data,backgroundColor:['#ffc90e','#a6a9a0'],hoverBackgroundColor:['#e7a800','#777d72'],borderRadius:9,maxBarThickness:55}]},options};
+  if (key==='risk') {
+   options.onHover=(_,active)=>{canvas.style.cursor=active.length?'pointer':''};
+   options.onClick=(_,active)=>{
+    const selected=active[0];
+    if (selected) stage.querySelectorAll('.risk-value')[selected.index]?.click();
+   };
+  }
   if (key==='pain') {
    config.data.datasets[0].backgroundColor=['#ffc90e','#b1b8ad','#b1b8ad'];
    config.data.datasets[0].hoverBackgroundColor=['#e7a800','#8f998c','#8f998c'];
