@@ -174,7 +174,7 @@ function render(){
  const s=slides[current];
  stage.className=s.kind||'standard';stage.dataset.index=current;stage.style.removeProperty('--mx');stage.style.removeProperty('--my');
  if(s.kind==='cover'){
-  stage.innerHTML=`<div class="hero"><div class="hero-copy reveal"><p class="eyebrow">BARO SEOGU · SPINE CARE</p><h1 id="slide-title">${esc(s.title).replace(/\n/g,'<br>')}</h1><p class="lead">${esc(s.lead)}</p><button class="primary" data-go="1">설명 시작</button><p class="tiny">허리 디스크 · 협착증 · 유합술 · 압박골절<br>목·팔 저림 · 척수 압박 · 자세와 두통</p></div><div class="hero-art reveal">${heroSpine()}<div class="hero-tag">통증의 이유를 함께 봅니다<span>뼈 · 디스크 · 신경의 관계</span></div></div></div>`;
+  stage.innerHTML=`<div class="hero"><div class="hero-copy reveal"><p class="eyebrow">BARO SEOGU · SPINE CARE</p><h1 id="slide-title">${esc(s.title).replace(/\n/g,'<br>')}</h1><p class="lead">${esc(s.lead)}</p><button class="primary" data-go="1">설명 시작</button><p class="tiny">허리 디스크 · 협착증 · 유합술 · 골프·스포츠<br>압박골절 · 목·팔 저림 · 척수 압박 · 자세와 두통</p></div><div class="hero-art reveal">${heroSpine()}<div class="hero-tag">통증의 이유를 함께 봅니다<span>뼈 · 디스크 · 신경의 관계</span></div></div></div>`;
  }else{
   stage.innerHTML=`<header class="head reveal"><p class="eyebrow">${esc(s.ch)}</p><h1 id="slide-title">${esc(s.title)}</h1><p class="lead">${esc(s.lead)}</p></header><div class="body reveal" id="body"></div>${refsHTML(s)}`;
   const body=$('#body');
